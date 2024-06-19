@@ -51,8 +51,8 @@ urls.forEach((url, index) => {
 
 const navigateToPage = (pageIndex) => {
     if (pageIndex >= 0 && pageIndex < totalPages) {
-        pages[currentPage].style.transform = 'rotateY(-180deg)';
-        pages[pageIndex].style.transform = 'rotateY(0deg)';
+        pages[currentPage].classList.remove('active');
+        pages[pageIndex].classList.add('active');
         currentPage = pageIndex;
     }
 };
