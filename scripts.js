@@ -4,8 +4,9 @@ const urls = [
     'pagina1.pdf',  
     'pagina2.pdf',  
     'pagina3.pdf',  
-    'pagina4.pdf',  
-    'pagina5.pdf'   
+    'pagina4.pdf',
+    'pagina5.pdf',
+    'pagina6.pdf'   
 ];
 
 let currentPage = 0;
@@ -31,7 +32,9 @@ const loadPdf = (url, pageIndex) => {
                 canvasContext: context,
                 viewport: viewport
             }).promise.then(() => {
-                document.getElementById(`page-${pageIndex + 1}`).appendChild(canvas);
+                const pageContainer = document.getElementById(`page-${pageIndex + 1}`);
+                pageContainer.innerHTML = ''; // Clear existing content
+                pageContainer.appendChild(canvas);
             });
         });
     });
