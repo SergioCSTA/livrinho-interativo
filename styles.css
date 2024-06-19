@@ -49,3 +49,10 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+/* Adicione estilos para navegação por toque */
+@media (hover: none) {
+    button {
+        display: none;
+    }
+}
