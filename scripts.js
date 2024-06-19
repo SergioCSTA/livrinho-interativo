@@ -17,8 +17,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
 const loadPdf = (url, pageIndex) => {
     const loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(function(pdf) {
-        pdf.getPage(1).then(function(page) {
+    loadingTask.promise.then(pdf => {
+        pdf.getPage(1).then(page => {
             const scale = 1.5;
             const viewport = page.getViewport({ scale: scale });
 
@@ -30,7 +30,7 @@ const loadPdf = (url, pageIndex) => {
             page.render({
                 canvasContext: context,
                 viewport: viewport
-            }).promise.then(function() {
+            }).promise.then(() => {
                 document.getElementById(`page-${pageIndex + 1}`).appendChild(canvas);
             });
         });
