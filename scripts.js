@@ -20,21 +20,26 @@ const loadPdf = (url, pageIndex) => {
     const loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(pdf => {
         pdf.getPage(1).then(page => {
-            const scale = 1.5;
-            const viewport = page.getViewport({ scale });
-
+            const viewport = page.getViewport({ scale: 1 });
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
 
-            page.render({
+            const container = document.getElementById(`page-${pageIndex + 1}`);
+            const containerRect = container.getBoundingClientRect();
+
+            const scale = Math.min(containerRect.width / viewport.width, containerRect.height / viewport.height);
+
+            canvas.width = viewport.width * scale;
+            canvas.height = viewport.height * scale;
+
+            const renderContext = {
                 canvasContext: context,
-                viewport: viewport
-            }).promise.then(() => {
-                const pageContainer = document.getElementById(`page-${pageIndex + 1}`);
-                pageContainer.innerHTML = ''; // Clear existing content
-                pageContainer.appendChild(canvas);
+                viewport: page.getViewport({ scale: scale })
+            };
+
+            page.render(renderContext).promise.then(() => {
+                container.innerHTML = ''; // Clear existing content
+                container.appendChild(canvas);
             });
         });
     });
