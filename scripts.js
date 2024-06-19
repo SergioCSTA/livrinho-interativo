@@ -24,7 +24,7 @@ const loadPdf = (url, pageIndex) => {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
-            const container = document.getElementById(`page-${pageIndex + 1}`);
+            const container = document.getElementById(`page-${pageIndex}`);
             const containerRect = container.getBoundingClientRect();
 
             const scale = Math.min(containerRect.width / viewport.width, containerRect.height / viewport.height);
@@ -46,7 +46,7 @@ const loadPdf = (url, pageIndex) => {
 };
 
 urls.forEach((url, index) => {
-    loadPdf(url, index);
+    loadPdf(url, index); // Carrega cada página PDF
 });
 
 const navigateToPage = (pageIndex) => {
