@@ -7,6 +7,7 @@ const urls = [
     'pagina4.pdf',
     'pagina5.pdf',
     'pagina6.pdf',
+    'pagina7.pdf',
 ];
 
 let currentPage = 0;
