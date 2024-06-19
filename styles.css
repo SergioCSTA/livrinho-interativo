@@ -11,8 +11,10 @@ body {
 }
 
 #book {
-    width: 300px;
-    height: 400px;
+    width: 90%;
+    max-width: 400px;
+    height: 90%;
+    max-height: 600px;
     perspective: 1000px;
     position: relative;
     touch-action: none; /* Prevent default touch actions */
