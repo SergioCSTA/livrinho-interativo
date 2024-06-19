@@ -1,12 +1,12 @@
 // scripts.js
 const urls = [
-    'capa.pdf',      // Substitua pelos nomes dos arquivos reais
-    'pagina1.pdf',  
-    'pagina2.pdf',  
-    'pagina3.pdf',  
-    'pagina4.pdf',  
+    'capa.pdf',
+    'pagina1.pdf',
+    'pagina2.pdf',
+    'pagina3.pdf',
+    'pagina4.pdf',
     'pagina5.pdf',
-    'pagina6.pdf'   
+    'pagina6.pdf',
 ];
 
 let currentPage = 0;
@@ -21,7 +21,7 @@ const loadPdf = (url, pageIndex) => {
     loadingTask.promise.then(pdf => {
         pdf.getPage(1).then(page => {
             const scale = 1.5;
-            const viewport = page.getViewport({ scale: scale });
+            const viewport = page.getViewport({ scale });
 
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
