@@ -1,11 +1,11 @@
 // scripts.js
 const urls = [
-    'URL_DA_CAPA.pdf',      // Substitua pelos URLs reais
-    'URL_DA_PAGINA1.pdf',  // Substitua pelos URLs reais
-    'URL_DA_PAGINA2.pdf',  // Substitua pelos URLs reais
-    'URL_DA_PAGINA3.pdf',  // Substitua pelos URLs reais
-    'URL_DA_PAGINA4.pdf',  // Substitua pelos URLs reais
-    'URL_DA_PAGINA5.pdf'   // Substitua pelos URLs reais
+    'capa.pdf',      // Substitua pelos nomes dos arquivos reais
+    'pagina1.pdf',  
+    'pagina2.pdf',  
+    'pagina3.pdf',  
+    'pagina4.pdf',  
+    'pagina5.pdf'   
 ];
 
 let currentPage = 0;
