@@ -57,3 +57,31 @@ document.getElementById('prev').addEventListener('click', () => {
         pages[currentPage].style.transform = 'rotateY(0deg)';
     }
 });
+
+// Adicione suporte para navegação por toque
+let startX = 0;
+let currentX = 0;
+
+const handleTouchStart = (event) => {
+    startX = event.touches[0].clientX;
+};
+
+const handleTouchMove = (event) => {
+    currentX = event.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+    if (startX - currentX > 50 && currentPage < totalPages - 1) {
+        // Swipe para a esquerda
+        pages[currentPage].style.transform = 'rotateY(-180deg)';
+        currentPage++;
+    } else if (currentX - startX > 50 && currentPage > 0) {
+        // Swipe para a direita
+        currentPage--;
+        pages[currentPage].style.transform = 'rotateY(0deg)';
+    }
+};
+
+document.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('touchmove', handleTouchMove);
+document.addEventListener('touchend', handleTouchEnd);
