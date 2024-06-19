@@ -49,18 +49,20 @@ urls.forEach((url, index) => {
     loadPdf(url, index);
 });
 
-document.getElementById('next').addEventListener('click', () => {
-    if (currentPage < totalPages - 1) {
+const navigateToPage = (pageIndex) => {
+    if (pageIndex >= 0 && pageIndex < totalPages) {
         pages[currentPage].style.transform = 'rotateY(-180deg)';
-        currentPage++;
+        pages[pageIndex].style.transform = 'rotateY(0deg)';
+        currentPage = pageIndex;
     }
+};
+
+document.getElementById('next').addEventListener('click', () => {
+    navigateToPage(currentPage + 1);
 });
 
 document.getElementById('prev').addEventListener('click', () => {
-    if (currentPage > 0) {
-        currentPage--;
-        pages[currentPage].style.transform = 'rotateY(0deg)';
-    }
+    navigateToPage(currentPage - 1);
 });
 
 // Adicione suporte para navegação por toque
@@ -78,12 +80,10 @@ const handleTouchMove = (event) => {
 const handleTouchEnd = () => {
     if (startX - currentX > 50 && currentPage < totalPages - 1) {
         // Swipe para a esquerda
-        pages[currentPage].style.transform = 'rotateY(-180deg)';
-        currentPage++;
+        navigateToPage(currentPage + 1);
     } else if (currentX - startX > 50 && currentPage > 0) {
         // Swipe para a direita
-        currentPage--;
-        pages[currentPage].style.transform = 'rotateY(0deg)';
+        navigateToPage(currentPage - 1);
     }
 };
 
